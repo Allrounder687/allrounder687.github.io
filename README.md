@@ -14,13 +14,13 @@ Before you publish this to GitHub Pages, you **MUST** update your Android App Si
 *(Note: If you have a separate key for debug builds, you can add a second block to the JSON array with your debug fingerprint).*
 
 ### Step 2: Publish to GitHub Pages
-1. Go to GitHub.com and create a new public repository (e.g., `itfeelsmusic-website`).
+1. Go to GitHub.com and create a new public repository (e.g., `allrounder687.github.io`).
 2. Push this local folder to your new repository:
    ```bash
    git add .
    git commit -m "Initial commit: Landing page and deep links"
    git branch -M main
-   git remote add origin https://github.com/YOUR-USERNAME/YOUR-REPO.git
+   git remote add origin https://github.com/Allrounder687/allrounder687.github.io.git
    git push -u origin main
    ```
 3. Once pushed, go to the repository's **Settings > Pages** on GitHub.
