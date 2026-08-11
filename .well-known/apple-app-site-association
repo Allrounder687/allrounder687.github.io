@@ -1,0 +1,13 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "A1B2C3D4E5.com.itfeels.music",
+        "paths": [
+          "/room/*"
+        ]
+      }
+    ]
+  }
+}

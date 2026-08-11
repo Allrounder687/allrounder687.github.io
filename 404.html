@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Feels Music - Room</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        /* Shared Styles from index.html */
+        :root {
+            --bg-color: #050505;
+            --glass-bg: rgba(25, 25, 30, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --primary-accent: #7C3AED;
+            --secondary-accent: #EC4899;
+            --text-primary: #FFFFFF;
+            --text-secondary: #A1A1AA;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', sans-serif; }
+        body { background-color: var(--bg-color); color: var(--text-primary); overflow-x: hidden; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+
+        .gradient-bg { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; overflow: hidden; background: #050505; }
+        .gradient-blob { position: absolute; filter: blur(120px); opacity: 0.5; animation: float 20s infinite alternate ease-in-out; }
+        .blob-1 { top: -10%; left: -10%; width: 50vw; height: 50vw; background: var(--primary-accent); }
+        .blob-2 { bottom: -20%; right: -10%; width: 60vw; height: 60vw; background: var(--secondary-accent); animation-delay: -5s; }
+
+        @keyframes float { 0% { transform: translate(0, 0) scale(1); } 100% { transform: translate(10%, 10%) scale(1.1); } }
+
+        .card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: 24px;
+            padding: 3rem;
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+        }
+
+        .logo { font-family: 'Outfit', sans-serif; font-size: 1.5rem; font-weight: 800; margin-bottom: 2rem; background: linear-gradient(to right, #FFF, #A1A1AA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+
+        h2 { font-family: 'Outfit', sans-serif; font-size: 2rem; margin-bottom: 1rem; }
+        p { color: var(--text-secondary); margin-bottom: 2rem; line-height: 1.6; }
+
+        .btn { display: inline-flex; align-items: center; gap: 10px; padding: 1rem 2rem; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 1.1rem; transition: all 0.3s; backdrop-filter: blur(10px); background: var(--text-primary); color: var(--bg-color); border: none; cursor: pointer; width: 100%; justify-content: center; }
+        .btn:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(255, 255, 255, 0.2); }
+        
+        .spinner { border: 3px solid rgba(255,255,255,0.1); width: 24px; height: 24px; border-radius: 50%; border-left-color: #fff; animation: spin 1s linear infinite; margin: 0 auto 1rem; }
+        @keyframes spin { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+
+    </style>
+</head>
+<body>
+    <div class="gradient-bg">
+        <div class="gradient-blob blob-1"></div>
+        <div class="gradient-blob blob-2"></div>
+    </div>
+
+    <div class="card" id="app-card">
+        <div class="logo">IT-Feels.</div>
+        <div id="loading">
+            <div class="spinner"></div>
+            <p>Connecting to room...</p>
+        </div>
+        <div id="content" style="display: none;">
+            <h2 id="room-title">Join Live Room</h2>
+            <p>You've been invited to listen together on IT-Feels Music. If you have the app installed, it should open automatically.</p>
+            <a href="/" class="btn" id="fallback-btn">Download IT-Feels</a>
+        </div>
+    </div>
+
+    <script>
+        // GitHub Pages Custom 404 Routing Logic
+        const path = window.location.pathname;
+        
+        if (path.startsWith('/room/')) {
+            const roomId = path.split('/')[2];
+            document.getElementById('room-title').innerText = "Join Room " + roomId;
+            
+            // Check if user is on a Desktop PC
+            const isDesktop = !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
+            
+            if (isDesktop) {
+                // Attempt to launch Windows Desktop custom URL scheme
+                const desktopScheme = "itfeelsmusic://room/" + roomId;
+                window.location.href = desktopScheme;
+                
+                // Show fallback UI after a short delay
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('content').style.display = 'block';
+                    document.getElementById('fallback-btn').innerText = "Open Desktop App";
+                    document.getElementById('fallback-btn').href = desktopScheme;
+                }, 1500);
+            } else {
+                // On mobile, the OS intent filters should have caught the HTTPS link natively.
+                // If they are here, it means they don't have the app installed OR they clicked "Continue to Website".
+                setTimeout(() => {
+                    document.getElementById('loading').style.display = 'none';
+                    document.getElementById('content').style.display = 'block';
+                }, 1000);
+            }
+        } else {
+            // Not a room link, just redirect to home
+            window.location.href = "/";
+        }
+    </script>
+</body>
+</html>
