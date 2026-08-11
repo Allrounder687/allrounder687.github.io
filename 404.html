@@ -81,24 +81,48 @@
         // GitHub Pages Custom 404 Routing Logic
         const path = window.location.pathname;
         
+        let targetScheme = "";
+        let title = "";
+        let message = "You've been invited to IT-Feels Music. If you have the app installed, it should open automatically.";
+        let isValidPath = false;
+
         if (path.startsWith('/room/')) {
             const roomId = path.split('/')[2];
-            document.getElementById('room-title').innerText = "Join Room " + roomId;
+            title = "Join Room " + roomId;
+            message = "You've been invited to listen together on IT-Feels Music. If you have the app installed, it should open automatically.";
+            targetScheme = "itfeelsmusic://room/" + roomId;
+            isValidPath = true;
+        } else if (path.startsWith('/song/')) {
+            const songId = path.split('/')[2];
+            title = "Play Song";
+            message = "You've been sent a track on IT-Feels Music. If you have the app installed, it should open automatically.";
+            targetScheme = "itfeelsmusic://song/" + songId;
+            isValidPath = true;
+        } else if (path.startsWith('/download/')) {
+            const songId = path.split('/')[2];
+            title = "Magic Download Link";
+            message = "A Magic Download Link has been activated. If you have the app installed, it will open and instantly download the track.";
+            targetScheme = "itfeelsmusic://download/" + songId;
+            isValidPath = true;
+        }
+        
+        if (isValidPath) {
+            document.getElementById('room-title').innerText = title;
+            document.querySelector('#content p').innerText = message;
             
             // Check if user is on a Desktop PC
             const isDesktop = !(/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent));
             
             if (isDesktop) {
                 // Attempt to launch Windows Desktop custom URL scheme
-                const desktopScheme = "itfeelsmusic://room/" + roomId;
-                window.location.href = desktopScheme;
+                window.location.href = targetScheme;
                 
                 // Show fallback UI after a short delay
                 setTimeout(() => {
                     document.getElementById('loading').style.display = 'none';
                     document.getElementById('content').style.display = 'block';
                     document.getElementById('fallback-btn').innerText = "Open Desktop App";
-                    document.getElementById('fallback-btn').href = desktopScheme;
+                    document.getElementById('fallback-btn').href = targetScheme;
                 }, 1500);
             } else {
                 // On mobile, the OS intent filters should have caught the HTTPS link natively.
@@ -109,7 +133,7 @@
                 }, 1000);
             }
         } else {
-            // Not a room link, just redirect to home
+            // Not a recognized link, just redirect to home
             window.location.href = "/";
         }
     </script>
