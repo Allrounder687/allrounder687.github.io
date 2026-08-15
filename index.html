@@ -1,1 +1,58 @@
-<meta name="google-site-verification" content="nCFWmeBudVmX2UWabm2nnBG2mDHPEsuJ1J_4vY_5fjY">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="google-site-verification" content="nCFWmeBudVmX2UWabm2nnBG2mDHPEsuJ1J_4vY_5fjY">
+    <title>IT Feels Music - Premium Streaming</title>
+    <meta name="description" content="Discover, sync, and stream your favorite music and podcasts seamlessly across devices.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root { --bg-color:#050505; --glass-bg:rgba(25,25,30,.6); --glass-border:rgba(255,255,255,.08); --primary-accent:#7C3AED; --secondary-accent:#EC4899; --text-primary:#FFF; --text-secondary:#A1A1AA; }
+        * { margin:0; padding:0; box-sizing:border-box; font-family:Inter,sans-serif; }
+        body { background:var(--bg-color); color:var(--text-primary); overflow-x:hidden; min-height:100vh; }
+        .gradient-bg { position:fixed; inset:0; z-index:-1; overflow:hidden; background:#050505; }
+        .gradient-blob { position:absolute; filter:blur(120px); opacity:.5; animation:float 20s infinite alternate ease-in-out; }
+        .blob-1 { top:-10%; left:-10%; width:50vw; height:50vw; background:var(--primary-accent); }
+        .blob-2 { bottom:-20%; right:-10%; width:60vw; height:60vw; background:var(--secondary-accent); animation-delay:-5s; }
+        @keyframes float { 0%{transform:translate(0,0) scale(1)} 100%{transform:translate(10%,10%) scale(1.1)} }
+        nav { padding:2rem 5%; display:flex; justify-content:space-between; align-items:center; }
+        .logo { font-family:Outfit,sans-serif; font-size:1.5rem; font-weight:800; letter-spacing:-.02em; background:linear-gradient(to right,#FFF,#A1A1AA); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero { display:flex; flex-direction:column; align-items:center; justify-content:center; min-height:80vh; text-align:center; padding:0 20px; }
+        h1 { font-family:Outfit,sans-serif; font-size:clamp(3rem,8vw,6rem); font-weight:800; line-height:1.1; margin-bottom:1.5rem; letter-spacing:-.03em; }
+        .gradient-text { background:linear-gradient(135deg,#fff 0%,#a5a5a5 100%); -webkit-background-clip:text; -webkit-text-fill-color:transparent; }
+        .hero p { font-size:1.25rem; color:var(--text-secondary); max-width:600px; margin-bottom:3rem; line-height:1.6; }
+        .cta-container { display:flex; gap:1rem; flex-wrap:wrap; justify-content:center; }
+        .btn { display:inline-flex; align-items:center; gap:10px; padding:1rem 2rem; border-radius:100px; text-decoration:none; font-weight:600; font-size:1.1rem; transition:all .3s cubic-bezier(.25,.46,.45,.94); backdrop-filter:blur(10px); }
+        .btn-primary { background:var(--text-primary); color:var(--bg-color); }
+        .btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 20px rgba(255,255,255,.2); }
+        .btn-secondary { background:var(--glass-bg); color:var(--text-primary); border:1px solid var(--glass-border); }
+        .btn-secondary:hover { background:rgba(40,40,50,.8); transform:translateY(-2px); }
+        .features { display:grid; grid-template-columns:repeat(auto-fit,minmax(300px,1fr)); gap:2rem; padding:4rem 5%; max-width:1200px; margin:0 auto; }
+        .glass-card { background:var(--glass-bg); border:1px solid var(--glass-border); border-radius:24px; padding:2.5rem; backdrop-filter:blur(20px); -webkit-backdrop-filter:blur(20px); transition:transform .3s ease; }
+        .glass-card:hover { transform:translateY(-5px); background:rgba(35,35,45,.6); }
+        .glass-card h3 { font-family:Outfit,sans-serif; font-size:1.5rem; margin-bottom:1rem; }
+        .glass-card p { color:var(--text-secondary); line-height:1.6; }
+    </style>
+</head>
+<body>
+    <div class="gradient-bg"><div class="gradient-blob blob-1"></div><div class="gradient-blob blob-2"></div></div>
+    <nav><div class="logo">IT-Feels.</div></nav>
+    <main class="hero">
+        <h1><span class="gradient-text">Music that moves</span><br>with you.</h1>
+        <p>Experience ultra-fast, premium audio streaming, seamless synchronized live rooms, and native video integration in one beautiful app.</p>
+        <div class="cta-container">
+            <a href="https://github.com/Achie/IT-Feels/releases/latest" class="btn btn-primary">Download for Android</a>
+            <a href="#" class="btn btn-secondary" onclick="alert('iOS App Store release coming soon! You can build locally using Shorebird via GitHub.')">Download for iOS</a>
+            <a href="https://github.com/Achie/IT-Feels/releases/latest" class="btn btn-secondary">Get Desktop App</a>
+        </div>
+    </main>
+    <section class="features">
+        <div class="glass-card"><h3>Live Listen Together</h3><p>Sync your playback instantly with friends globally. Chat in real-time while experiencing the exact same song, down to the millisecond.</p></div>
+        <div class="glass-card"><h3>Seamless Video</h3><p>Switch between pristine Opus audio and full 1080p music videos seamlessly, without dropping a beat or losing your spot.</p></div>
+        <div class="glass-card"><h3>Premium Aesthetics</h3><p>A beautifully crafted UI built entirely in Flutter, featuring real-time dynamic palette extraction and buttery smooth 120Hz micro-animations.</p></div>
+    </section>
+</body>
+</html>
